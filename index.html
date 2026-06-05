@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Krishu ❤️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== CSS Custom Properties ===== */
+        :root {
+            --bg-primary: #EED888;
+            --white: #FFFFFF;
+            --cream: #FFF8E7;
+            --soft-gold: #D4A574;
+            --gold-accent: #C9A96E;
+            --light-green: #A8D5A2;
+            --green-accent: #7DB87D;
+            --text-dark: #5C4A3A;
+            --text-medium: #7A6555;
+            --soft-pink: #F4C2C2;
+            --rose: #E8A0A0;
+            --font-handwritten: 'Great Vibes', cursive;
+            --font-body: 'Outfit', sans-serif;
+        }
+
+        /* ===== Reset & Base ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: var(--bg-primary);
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            position: relative;
+        }
+
+        /* ===== Background Gradient Overlay ===== */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(244, 194, 194, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(168, 213, 162, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(212, 165, 116, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ===== Loading Screen ===== */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+
+        .loading-daisy {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 30px;
+        }
+
+        .loading-text {
+            font-family: var(--font-handwritten);
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            opacity: 0.8;
+        }
+
+        /* ===== Floating Elements Container ===== */
+        .floating-daisies-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .floating-daisy {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .floating-particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--soft-gold);
+            pointer-events: none;
+        }
+
+        /* ===== Main Content ===== */
+        .main-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding: 40px 20px 60px;
+        }
+
+        /* ===== Hero Section ===== */
+        .hero-section {
+            text-align: center;
+            margin-top: 6vh;
+            margin-bottom: 30px;
+        }
+
+        .hero-subtitle-top {
+            font-family: var(--font-body);
+            font-weight: 500;
+            color: var(--soft-gold);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            opacity: 0;
+        }
+
+        .hero-title {
+            font-family: var(--font-handwritten);
+            font-size: 4rem;
+            color: var(--text-dark);
+            line-height: 1.2;
+            margin-bottom: 12px;
+            opacity: 0;
+            text-shadow: 0 2px 10px rgba(92, 74, 58, 0.08);
+        }
+
+        .hero-subtitle-bottom {
+            font-family: var(--font-body);
+            font-weight: 300;
+            font-style: italic;
+            color: var(--text-medium);
+            font-size: 1rem;
+            opacity: 0;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===== Magical Gate ===== */
+        .gate-container {
+            position: relative;
+            width: 280px;
+            height: 380px;
+            margin: 10px auto 30px;
+            opacity: 0;
+        }
+
+        .gate-frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        /* Gate arch */
+        .gate-arch {
+            position: absolute;
+            top: 0;
+            left: -10px;
+            right: -10px;
+            height: 160px;
+            border: 4px solid var(--soft-gold);
+            border-bottom: none;
+            border-radius: 150px 150px 0 0;
+            background: linear-gradient(180deg, rgba(212, 165, 116, 0.08) 0%, transparent 100%);
+            box-shadow:
+                0 -4px 20px rgba(201, 169, 110, 0.2),
+                inset 0 -4px 20px rgba(201, 169, 110, 0.05);
+        }
+
+        .gate-arch::before {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            right: 6px;
+            height: 140px;
+            border: 2px solid rgba(212, 165, 116, 0.3);
+            border-bottom: none;
+            border-radius: 145px 145px 0 0;
+        }
+
+        /* Gate pillars */
+        .gate-pillar {
+            position: absolute;
+            bottom: 0;
+            width: 18px;
+            height: 260px;
+            background: linear-gradient(180deg, var(--soft-gold), #B8956A);
+            border-radius: 4px;
+            box-shadow: 0 0 15px rgba(201, 169, 110, 0.2);
+        }
+
+        .gate-pillar.left {
+            left: -10px;
+        }
+
+        .gate-pillar.right {
+            right: -10px;
+        }
+
+        .gate-pillar::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -4px;
+            width: 26px;
+            height: 16px;
+            background: linear-gradient(180deg, var(--gold-accent), var(--soft-gold));
+            border-radius: 4px 4px 2px 2px;
+            box-shadow: 0 2px 8px rgba(201, 169, 110, 0.3);
+        }
+
+        .gate-pillar::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: -6px;
+            width: 30px;
+            height: 14px;
+            background: linear-gradient(180deg, var(--soft-gold), #A8855A);
+            border-radius: 2px 2px 4px 4px;
+        }
+
+        /* Gate doors wrapper */
+        .gate-doors {
+            position: absolute;
+            top: 80px;
+            left: 8px;
+            right: 8px;
+            bottom: 10px;
+            perspective: 800px;
+            z-index: 2;
+            overflow: hidden;
+            border-radius: 132px 132px 0 0;
+        }
+
+        /* Gate glow from inside */
+        .gate-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center 40%,
+                rgba(255, 247, 214, 0.9) 0%,
+                rgba(212, 165, 116, 0.3) 30%,
+                transparent 70%);
+            opacity: 0;
+            z-index: 1;
+        }
+
+        /* Individual gate doors */
+        .gate-door {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(180deg,
+                rgba(212, 165, 116, 0.25) 0%,
+                rgba(201, 169, 110, 0.35) 50%,
+                rgba(184, 149, 106, 0.3) 100%);
+            backdrop-filter: blur(4px);
+            border: 2px solid rgba(212, 165, 116, 0.5);
+            z-index: 2;
+            transform-origin: left center;
+        }
+
+        .gate-door.left {
+            left: 0;
+            transform-origin: left center;
+            border-right: 1px solid rgba(212, 165, 116, 0.4);
+            border-radius: 132px 0 0 0;
+        }
+
+        .gate-door.right {
+            right: 0;
+            transform-origin: right center;
+            border-left: 1px solid rgba(212, 165, 116, 0.4);
+            border-radius: 0 132px 0 0;
+        }
+
+        /* Decorative ironwork patterns on doors */
+        .door-pattern {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            height: 60%;
+            transform: translateY(-50%);
+        }
+
+        .door-pattern .swirl {
+            position: absolute;
+            border: 2px solid rgba(212, 165, 116, 0.45);
+            border-radius: 50%;
+        }
+
+        .gate-door.left .swirl-1 {
+            width: 60px;
+            height: 60px;
+            top: 15%;
+            right: 10px;
+        }
+
+        .gate-door.left .swirl-2 {
+            width: 40px;
+            height: 40px;
+            top: 45%;
+            right: 20px;
+        }
+
+        .gate-door.left .swirl-3 {
+            width: 50px;
+            height: 50px;
+            bottom: 15%;
+            right: 15px;
+        }
+
+        .gate-door.right .swirl-1 {
+            width: 60px;
+            height: 60px;
+            top: 15%;
+            left: 10px;
+        }
+
+        .gate-door.right .swirl-2 {
+            width: 40px;
+            height: 40px;
+            top: 45%;
+            left: 20px;
+        }
+
+        .gate-door.right .swirl-3 {
+            width: 50px;
+            height: 50px;
+            bottom: 15%;
+            left: 15px;
+        }
+
+        /* Vertical line patterns */
+        .door-line {
+            position: absolute;
+            width: 2px;
+            background: rgba(212, 165, 116, 0.3);
+            border-radius: 1px;
+        }
+
+        .gate-door.left .door-line-1 {
+            height: 70%;
+            top: 15%;
+            right: 35%;
+        }
+
+        .gate-door.left .door-line-2 {
+            height: 50%;
+            top: 25%;
+            right: 60%;
+        }
+
+        .gate-door.right .door-line-1 {
+            height: 70%;
+            top: 15%;
+            left: 35%;
+        }
+
+        .gate-door.right .door-line-2 {
+            height: 50%;
+            top: 25%;
+            left: 60%;
+        }
+
+        /* Horizontal accents */
+        .door-accent {
+            position: absolute;
+            height: 2px;
+            background: rgba(212, 165, 116, 0.35);
+            left: 10%;
+            right: 10%;
+            border-radius: 1px;
+        }
+
+        .door-accent-1 { top: 30%; }
+        .door-accent-2 { top: 70%; }
+
+        /* Keyhole */
+        .keyhole {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+        }
+
+        .keyhole-circle {
+            width: 20px;
+            height: 20px;
+            border: 3px solid var(--soft-gold);
+            border-radius: 50%;
+            margin: 0 auto;
+            background: rgba(92, 74, 58, 0.15);
+            box-shadow: 0 0 10px rgba(201, 169, 110, 0.3);
+        }
+
+        .keyhole-slot {
+            width: 8px;
+            height: 16px;
+            background: rgba(92, 74, 58, 0.15);
+            border: 2px solid var(--soft-gold);
+            border-top: none;
+            margin: -2px auto 0;
+            border-radius: 0 0 4px 4px;
+        }
+
+        /* Gate frame daisies */
+        .gate-daisy {
+            position: absolute;
+            z-index: 5;
+            pointer-events: none;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
+        }
+
+        /* Outer golden glow */
+        .gate-outer-glow {
+            position: absolute;
+            top: -30px;
+            left: -40px;
+            right: -40px;
+            bottom: -30px;
+            border-radius: 180px 180px 10px 10px;
+            background: radial-gradient(ellipse at center 30%,
+                rgba(201, 169, 110, 0.12) 0%,
+                transparent 70%);
+            box-shadow: 0 0 60px rgba(201, 169, 110, 0.1);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ===== Daisy Burst (correct passcode) ===== */
+        .burst-daisy {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* ===== Sparkle Particles ===== */
+        .sparkle {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+        }
+
+        /* ===== Passcode Section ===== */
+        .passcode-section {
+            text-align: center;
+            margin-top: 5px;
+            opacity: 0;
+        }
+
+        .passcode-label {
+            font-family: var(--font-handwritten);
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        .passcode-input {
+            width: 280px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid rgba(212, 165, 116, 0.3);
+            border-radius: 50px;
+            padding: 15px 25px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            text-align: center;
+            letter-spacing: 3px;
+            color: var(--text-dark);
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .passcode-input::placeholder {
+            color: rgba(212, 165, 116, 0.5);
+            letter-spacing: 6px;
+        }
+
+        .passcode-input:focus {
+            border-color: var(--soft-gold);
+            box-shadow: 0 0 20px rgba(212, 165, 116, 0.25), 0 0 40px rgba(212, 165, 116, 0.1);
+        }
+
+        .passcode-input.error {
+            border-color: var(--rose);
+            box-shadow: 0 0 15px rgba(232, 160, 160, 0.3);
+        }
+
+        .unlock-btn {
+            background: linear-gradient(135deg, #D4A574, #C9A96E);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            padding: 15px 40px;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 15px rgba(212, 165, 116, 0.4);
+            cursor: pointer;
+            margin-top: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .unlock-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .unlock-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(212, 165, 116, 0.55);
+        }
+
+        .unlock-btn:hover::before {
+            left: 100%;
+        }
+
+        .unlock-btn:active {
+            transform: scale(0.98);
+        }
+
+        .error-message {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: var(--rose);
+            margin-top: 12px;
+            min-height: 20px;
+            opacity: 0;
+        }
+
+        /* ===== White Fade Overlay ===== */
+        .white-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--white);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 9990;
+        }
+
+        /* ===== Responsive ===== */
+        @media (min-width: 768px) {
+            .hero-subtitle-top {
+                font-size: 1.2rem;
+            }
+
+            .hero-title {
+                font-size: 6rem;
+            }
+
+            .hero-subtitle-bottom {
+                font-size: 1.1rem;
+            }
+
+            .gate-container {
+                width: 340px;
+                height: 450px;
+            }
+
+            .gate-arch {
+                height: 190px;
+            }
+
+            .gate-arch::before {
+                height: 170px;
+            }
+
+            .gate-pillar {
+                height: 310px;
+                width: 22px;
+            }
+
+            .gate-pillar::before {
+                width: 30px;
+                left: -4px;
+            }
+
+            .gate-pillar::after {
+                width: 34px;
+                left: -6px;
+            }
+
+            .gate-doors {
+                top: 95px;
+                border-radius: 150px 150px 0 0;
+            }
+
+            .gate-door.left {
+                border-radius: 150px 0 0 0;
+            }
+
+            .gate-door.right {
+                border-radius: 0 150px 0 0;
+            }
+
+            .passcode-label {
+                font-size: 1.8rem;
+            }
+
+            .passcode-input {
+                width: 320px;
+                padding: 18px 30px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hero-section {
+                margin-top: 5vh;
+            }
+
+            .gate-container {
+                width: 380px;
+                height: 490px;
+            }
+        }
+
+        @media (max-height: 700px) {
+            .hero-section {
+                margin-top: 2vh;
+                margin-bottom: 15px;
+            }
+
+            .gate-container {
+                width: 240px;
+                height: 320px;
+                margin-bottom: 15px;
+            }
+
+            .gate-arch {
+                height: 130px;
+            }
+
+            .gate-arch::before {
+                height: 115px;
+            }
+
+            .gate-pillar {
+                height: 220px;
+            }
+
+            .gate-doors {
+                top: 65px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-daisy" id="loadingDaisy"></div>
+        <div class="loading-text">Preparing something special...</div>
+    </div>
+
+    <!-- Floating Daisies Container -->
+    <div class="floating-daisies-container" id="floatingDaisiesContainer"></div>
+
+    <!-- Floating Particles Container -->
+    <div class="floating-particles-container" id="floatingParticlesContainer"></div>
+
+    <!-- White Overlay (for correct passcode transition) -->
+    <div class="white-overlay" id="whiteOverlay"></div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-subtitle-top" id="heroSubTop">Happy Birthday</div>
+            <h1 class="hero-title" id="heroTitle">Krishu ❤️</h1>
+            <p class="hero-subtitle-bottom" id="heroSubBottom">A little world made specially for you...</p>
+        </section>
+
+        <!-- Magical Gate -->
+        <div class="gate-container" id="gateContainer">
+            <div class="gate-outer-glow"></div>
+
+            <!-- Gate Frame -->
+            <div class="gate-frame">
+                <div class="gate-arch"></div>
+                <div class="gate-pillar left"></div>
+                <div class="gate-pillar right"></div>
+            </div>
+
+            <!-- Gate Doors -->
+            <div class="gate-doors" id="gateDoors">
+                <div class="gate-glow" id="gateGlow"></div>
+
+                <div class="gate-door left" id="gateDoorLeft">
+                    <div class="door-pattern">
+                        <div class="swirl swirl-1"></div>
+                        <div class="swirl swirl-2"></div>
+                        <div class="swirl swirl-3"></div>
+                    </div>
+                    <div class="door-line door-line-1"></div>
+                    <div class="door-line door-line-2"></div>
+                    <div class="door-accent door-accent-1"></div>
+                    <div class="door-accent door-accent-2"></div>
+                </div>
+
+                <div class="gate-door right" id="gateDoorRight">
+                    <div class="door-pattern">
+                        <div class="swirl swirl-1"></div>
+                        <div class="swirl swirl-2"></div>
+                        <div class="swirl swirl-3"></div>
+                    </div>
+                    <div class="door-line door-line-1"></div>
+                    <div class="door-line door-line-2"></div>
+                    <div class="door-accent door-accent-1"></div>
+                    <div class="door-accent door-accent-2"></div>
+                </div>
+
+                <!-- Keyhole -->
+                <div class="keyhole" id="keyhole">
+                    <div class="keyhole-circle"></div>
+                    <div class="keyhole-slot"></div>
+                </div>
+            </div>
+
+            <!-- Gate daisies will be injected by JS -->
+        </div>
+
+        <!-- Passcode Section -->
+        <section class="passcode-section" id="passcodeSection">
+            <div class="passcode-label">Enter the Secret Passcode</div>
+            <input type="password" class="passcode-input" id="passcodeInput" placeholder="✿ ✿ ✿ ✿" autocomplete="off">
+            <button class="unlock-btn" id="unlockBtn">Unlock My Heart ❤️</button>
+            <div class="error-message" id="errorMessage">Try again, my love 💕</div>
+        </section>
+
+    </div>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+    <script>
+        // ========================================
+        // CHANGE YOUR PASSCODE HERE
+        const SECRET_PASSCODE = '0706';
+        // ========================================
+
+        // ===== SVG Daisy Creator =====
+        function createDaisySVG(size, color = 'white') {
+            const petalColor = color === 'white' ? '#FFFEF5' : color;
+            const petalStroke = color === 'white' ? '#F0EAD6' : 'rgba(0,0,0,0.05)';
+            const centerColor = '#F2C94C';
+            const centerStroke = '#D4A574';
+            const numPetals = 8;
+            const r = size / 2;
+            const petalLength = r * 0.72;
+            const petalWidth = r * 0.32;
+            const centerR = r * 0.22;
+
+            let petals = '';
+            for (let i = 0; i < numPetals; i++) {
+                const angle = (i * 360) / numPetals;
+                petals += `<ellipse
+                    cx="${r}"
+                    cy="${centerR + 2}"
+                    rx="${petalWidth}"
+                    ry="${petalLength}"
+                    fill="${petalColor}"
+                    stroke="${petalStroke}"
+                    stroke-width="0.5"
+                    transform="rotate(${angle}, ${r}, ${r})"
+                    opacity="1"
+                />`;
+            }
+
+            return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+                ${petals}
+                <circle cx="${r}" cy="${r}" r="${centerR}" fill="${centerColor}" stroke="${centerStroke}" stroke-width="0.8"/>
+                <circle cx="${r}" cy="${r}" r="${centerR * 0.5}" fill="#E5B83A" opacity="0.5"/>
+            </svg>`;
+        }
+
+        // ===== Loading Screen Daisy =====
+        (function initLoadingDaisy() {
+            const container = document.getElementById('loadingDaisy');
+            container.innerHTML = createDaisySVG(80, 'white');
+        })();
+
+        // ===== Loading Screen Animation =====
+        function animateLoadingScreen() {
+            const loadingDaisy = document.querySelector('#loadingDaisy svg');
+            const loadingText = document.querySelector('.loading-text');
+
+            // Spin and pulse the daisy
+            gsap.to(loadingDaisy, {
+                rotation: 360,
+                duration: 3,
+                ease: 'none',
+                repeat: -1,
+                transformOrigin: '50% 50%'
+            });
+
+            gsap.to(loadingDaisy, {
+                scale: 1.15,
+                duration: 0.8,
+                ease: 'sine.inOut',
+                yoyo: true,
+                repeat: -1
+            });
+
+            // Pulsing text
+            gsap.to(loadingText, {
+                opacity: 0.4,
+                duration: 1,
+                ease: 'sine.inOut',
+                yoyo: true,
+                repeat: -1
+            });
+
+            // Fade out loading screen after 2.5 seconds
+            gsap.to('#loadingScreen', {
+                opacity: 0,
+                duration: 0.8,
+                delay: 2.5,
+                ease: 'power2.inOut',
+                onComplete: () => {
+                    document.getElementById('loadingScreen').style.display = 'none';
+                    animateEntrance();
+                }
+            });
+        }
+
+        // ===== Floating Daisies =====
+        function createFloatingDaisies() {
+            const container = document.getElementById('floatingDaisiesContainer');
+            const count = 18;
+
+            for (let i = 0; i < count; i++) {
+                const size = 20 + Math.random() * 30;
+                const daisy = document.createElement('div');
+                daisy.className = 'floating-daisy';
+                daisy.innerHTML = createDaisySVG(size, 'white');
+                daisy.style.opacity = 0.6 + Math.random() * 0.4;
+
+                const startX = Math.random() * window.innerWidth;
+                const startY = Math.random() * window.innerHeight;
+                daisy.style.left = startX + 'px';
+                daisy.style.top = startY + 'px';
+
+                container.appendChild(daisy);
+
+                animateFloatingDaisy(daisy, i);
+            }
+        }
+
+        function animateFloatingDaisy(daisy, index) {
+            const duration = 15 + Math.random() * 20;
+            const delay = Math.random() * 5;
+
+            // Gentle floating motion
+            gsap.to(daisy, {
+                x: () => (Math.random() - 0.5) * 300,
+                y: () => (Math.random() - 0.5) * 400,
+                rotation: () => (Math.random() - 0.5) * 120,
+                duration: duration,
+                ease: 'sine.inOut',
+                delay: delay,
+                repeat: -1,
+                yoyo: true,
+                overwrite: 'auto'
+            });
+
+            // Slight opacity flicker
+            gsap.to(daisy, {
+                opacity: () => 0.6 + Math.random() * 0.4,
+                duration: 3 + Math.random() * 4,
+                ease: 'sine.inOut',
+                yoyo: true,
+                repeat: -1,
+                delay: Math.random() * 2
+            });
+        }
+
+        // ===== Floating Particles =====
+        function createFloatingParticles() {
+            const container = document.getElementById('floatingParticlesContainer');
+            const count = 35;
+
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                const size = 2 + Math.random() * 4;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+
+                const opacity = 0.2 + Math.random() * 0.5;
+                particle.style.opacity = opacity;
+                particle.style.boxShadow = `0 0 ${4 + Math.random() * 8}px rgba(212, 165, 116, ${opacity})`;
+
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+
+                container.appendChild(particle);
+
+                animateParticle(particle);
+            }
+        }
+
+        function animateParticle(particle) {
+            const duration = 10 + Math.random() * 15;
+
+            gsap.to(particle, {
+                x: () => (Math.random() - 0.5) * 200,
+                y: () => (Math.random() - 0.5) * 200,
+                opacity: () => 0.1 + Math.random() * 0.4,
+                duration: duration,
+                ease: 'sine.inOut',
+                repeat: -1,
+                yoyo: true,
+                delay: Math.random() * 5
+            });
+        }
+
+        // ===== Gate Daisies =====
+        function addGateDaisies() {
+            const gateContainer = document.getElementById('gateContainer');
+            const positions = [
+                { x: -20, y: -10, size: 28, rot: -15 },
+                { x: 15, y: -18, size: 22, rot: 10 },
+                { x: '50%', y: -22, size: 32, rot: 0, centerX: true },
+                { x: -22, y: 100, size: 24, rot: 20 },
+                { x: -18, y: 220, size: 20, rot: -10 },
+                { x: 'calc(100% - 5px)', y: -12, size: 26, rot: 15 },
+                { x: 'calc(100% + 2px)', y: 110, size: 22, rot: -20 },
+                { x: 'calc(100% - 2px)', y: 240, size: 18, rot: 25 },
+                { x: 30, y: -15, size: 18, rot: 30 },
+                { x: 'calc(100% - 40px)', y: -16, size: 20, rot: -25 },
+            ];
+
+            positions.forEach((pos, i) => {
+                const daisy = document.createElement('div');
+                daisy.className = 'gate-daisy';
+                daisy.innerHTML = createDaisySVG(pos.size, 'white');
+
+                if (pos.centerX) {
+                    daisy.style.left = '50%';
+                    daisy.style.transform = `translateX(-50%) rotate(${pos.rot}deg)`;
+                } else {
+                    if (typeof pos.x === 'string') {
+                        daisy.style.left = pos.x;
+                    } else {
+                        daisy.style.left = pos.x + 'px';
+                    }
+                    daisy.style.transform = `rotate(${pos.rot}deg)`;
+                }
+                daisy.style.top = pos.y + 'px';
+
+                gateContainer.appendChild(daisy);
+
+                // Gentle bob
+                gsap.to(daisy, {
+                    y: -5 + Math.random() * 10,
+                    rotation: pos.rot + (Math.random() - 0.5) * 10,
+                    duration: 2 + Math.random() * 2,
+                    ease: 'sine.inOut',
+                    yoyo: true,
+                    repeat: -1,
+                    delay: i * 0.2
+                });
+            });
+        }
+
+        // ===== Entrance Animation =====
+        function animateEntrance() {
+            const tl = gsap.timeline();
+
+            tl.to('#heroSubTop', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'power2.out',
+                from: { y: 20 }
+            })
+            .fromTo('#heroSubTop', { y: 20 }, { y: 0 }, '<')
+            .to('#heroTitle', {
+                opacity: 1,
+                duration: 1,
+                ease: 'power2.out'
+            }, '-=0.4')
+            .fromTo('#heroTitle', { y: 30, scale: 0.95 }, { y: 0, scale: 1 }, '<')
+            .to('#heroSubBottom', {
+                opacity: 1,
+                duration: 0.8,
+                ease: 'power2.out'
+            }, '-=0.5')
+            .fromTo('#heroSubBottom', { y: 15 }, { y: 0 }, '<')
+            .to('#gateContainer', {
+                opacity: 1,
+                duration: 1,
+                ease: 'power2.out'
+            }, '-=0.3')
+            .fromTo('#gateContainer', { y: 30, scale: 0.95 }, { y: 0, scale: 1 }, '<')
+            .to('#passcodeSection', {
+                opacity: 1,
+                duration: 0.8,
+                ease: 'power2.out'
+            }, '-=0.5')
+            .fromTo('#passcodeSection', { y: 20 }, { y: 0 }, '<');
+        }
+
+        // ===== Passcode Logic =====
+        let isAnimating = false;
+
+        function handlePasscode() {
+            if (isAnimating) return;
+
+            const input = document.getElementById('passcodeInput');
+            const value = input.value.trim().toLowerCase();
+
+            if (value === SECRET_PASSCODE.toLowerCase()) {
+                isAnimating = true;
+                correctPasscode();
+            } else {
+                wrongPasscode();
+            }
+        }
+
+        // Wrong passcode
+        function wrongPasscode() {
+            const input = document.getElementById('passcodeInput');
+            const errorMsg = document.getElementById('errorMessage');
+
+            // Shake animation
+            gsap.to(input, {
+                x: [-12, 12, -8, 8, -4, 4, 0],
+                duration: 0.5,
+                ease: 'power2.out'
+            });
+
+            // Red border flash
+            input.classList.add('error');
+            gsap.delayedCall(1, () => input.classList.remove('error'));
+
+            // Show error message
+            gsap.killTweensOf(errorMsg);
+            gsap.fromTo(errorMsg, { opacity: 0, y: 5 }, {
+                opacity: 1,
+                y: 0,
+                duration: 0.4,
+                ease: 'power2.out'
+            });
+            gsap.to(errorMsg, {
+                opacity: 0,
+                duration: 0.5,
+                delay: 2,
+                ease: 'power2.in'
+            });
+
+            input.value = '';
+            input.focus();
+        }
+
+        // Correct passcode
+        function correctPasscode() {
+            const btn = document.getElementById('unlockBtn');
+            const input = document.getElementById('passcodeInput');
+            const gateContainer = document.getElementById('gateContainer');
+
+            const tl = gsap.timeline();
+
+            // 1. Button text changes with pulse
+            tl.to(btn, {
+                scale: 1.1,
+                duration: 0.2,
+                ease: 'power2.out',
+                onStart: () => { btn.textContent = '✓'; }
+            })
+            .to(btn, {
+                scale: 1,
+                duration: 0.2,
+                ease: 'power2.in'
+            })
+
+            // 2. Wait
+            .to({}, { duration: 0.5 })
+
+            // 3. Burst of daisies from gate center
+            .call(() => burstDaisies(gateContainer))
+
+            // 4. Gate doors swing open
+            .to('#gateDoorLeft', {
+                rotateY: -110,
+                duration: 1.5,
+                ease: 'power2.inOut'
+            }, '+=0.2')
+            .to('#gateDoorRight', {
+                rotateY: 110,
+                duration: 1.5,
+                ease: 'power2.inOut'
+            }, '<')
+
+            // Fade keyhole
+            .to('#keyhole', {
+                opacity: 0,
+                duration: 0.3
+            }, '<')
+
+            // 5. Golden light from inside the gate
+            .to('#gateGlow', {
+                opacity: 1,
+                scale: 1.5,
+                duration: 1.2,
+                ease: 'power2.out'
+            }, '-=1.0')
+
+            // 6. Sparkle particles
+            .call(() => createSparkles(gateContainer), null, '-=0.8')
+
+            // 7. Fade everything to white
+            .to('#whiteOverlay', {
+                opacity: 1,
+                duration: 1.2,
+                ease: 'power2.in',
+                onStart: () => {
+                    document.getElementById('whiteOverlay').style.pointerEvents = 'all';
+                }
+            }, '-=0.3')
+
+            // 8. Redirect
+            .call(() => {
+                window.location.href = 'garden.html';
+            }, null, '+=0.3');
+        }
+
+        // ===== Burst Daisies =====
+        function burstDaisies(referenceEl) {
+            const rect = referenceEl.getBoundingClientRect();
+            const cx = rect.left + rect.width / 2;
+            const cy = rect.top + rect.height / 2;
+            const count = 50;
+
+            for (let i = 0; i < count; i++) {
+                const size = 12 + Math.random() * 24;
+                const daisy = document.createElement('div');
+                daisy.className = 'burst-daisy';
+                daisy.innerHTML = createDaisySVG(size, 'white');
+                daisy.style.left = cx + 'px';
+                daisy.style.top = cy + 'px';
+                document.body.appendChild(daisy);
+
+                const angle = (Math.random() * 360) * (Math.PI / 180);
+                const distance = 100 + Math.random() * 350;
+                const dx = Math.cos(angle) * distance;
+                const dy = Math.sin(angle) * distance - 50;
+
+                gsap.to(daisy, {
+                    x: dx,
+                    y: dy,
+                    rotation: (Math.random() - 0.5) * 720,
+                    opacity: 0,
+                    scale: 0.3 + Math.random() * 0.7,
+                    duration: 1.5 + Math.random() * 1,
+                    ease: 'power2.out',
+                    onComplete: () => daisy.remove()
+                });
+            }
+        }
+
+        // ===== Sparkle Particles =====
+        function createSparkles(referenceEl) {
+            const rect = referenceEl.getBoundingClientRect();
+            const cx = rect.left + rect.width / 2;
+            const cy = rect.top + rect.height / 2;
+            const count = 40;
+            const colors = ['#F2C94C', '#D4A574', '#FFFEF5', '#F4C2C2', '#C9A96E', '#FFE4B5'];
+
+            for (let i = 0; i < count; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                const size = 3 + Math.random() * 6;
+                sparkle.style.width = size + 'px';
+                sparkle.style.height = size + 'px';
+
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                sparkle.style.background = color;
+                sparkle.style.boxShadow = `0 0 ${size * 2}px ${color}`;
+
+                sparkle.style.left = cx + 'px';
+                sparkle.style.top = cy + 'px';
+                document.body.appendChild(sparkle);
+
+                const angle = (Math.random() * 360) * (Math.PI / 180);
+                const distance = 80 + Math.random() * 250;
+
+                gsap.to(sparkle, {
+                    x: Math.cos(angle) * distance,
+                    y: Math.sin(angle) * distance,
+                    opacity: 0,
+                    duration: 1 + Math.random() * 1,
+                    ease: 'power3.out',
+                    delay: Math.random() * 0.3,
+                    onComplete: () => sparkle.remove()
+                });
+            }
+        }
+
+        // ===== Event Listeners =====
+        document.getElementById('unlockBtn').addEventListener('click', handlePasscode);
+        document.getElementById('passcodeInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                handlePasscode();
+            }
+        });
+
+        // ===== Mouse Trail Effect =====
+        let lastTrailTime = 0;
+        document.addEventListener('mousemove', function(e) {
+            const now = Date.now();
+            if (now - lastTrailTime < 50) return; // limit trail frequency
+            lastTrailTime = now;
+
+            const size = 10 + Math.random() * 15;
+            const daisy = document.createElement('div');
+            daisy.style.position = 'fixed';
+            daisy.style.pointerEvents = 'none';
+            daisy.style.zIndex = '10001';
+            daisy.style.left = e.clientX + 'px';
+            daisy.style.top = e.clientY + 'px';
+            daisy.innerHTML = createDaisySVG(size, 'white');
+            document.body.appendChild(daisy);
+
+            gsap.to(daisy, {
+                y: '+=50',
+                x: (Math.random() - 0.5) * 40,
+                rotation: (Math.random() - 0.5) * 180,
+                opacity: 0,
+                scale: 0.5,
+                duration: 1 + Math.random() * 0.5,
+                ease: 'power1.out',
+                onComplete: () => daisy.remove()
+            });
+        });
+
+        // ===== Initialize =====
+        window.addEventListener('DOMContentLoaded', () => {
+            createFloatingDaisies();
+            createFloatingParticles();
+            addGateDaisies();
+            animateLoadingScreen();
+        });
+    </script>
+</body>
+</html>
